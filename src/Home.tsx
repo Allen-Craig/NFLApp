@@ -1,8 +1,37 @@
 import { useState } from "react";
 
 type TeamData = {
-  name: string;
-  teamID: number;
+  SeasonType: number;
+  Season: number;
+  Conference: "";
+  Division: "";
+  Team: "";
+  Name: "";
+  Wins: number;
+  Losses: number;
+  Ties: number;
+  Percentage: Float32Array;
+  PointsFor: number;
+  PointsAgainst: number;
+  NetPoints: number;
+  Touchdowns: number;
+  DivisionWins: number;
+  DivisionLosses: number;
+  ConferenceWins: number;
+  ConferenceLosses: number;
+  TeamID: number;
+  DivisionTies: number;
+  ConferenceTies: number;
+  GlobalTeamID: number;
+  DivisionRank: number;
+  ConferenceRank: number;
+  HomeWins: number;
+  HomeLosses: number;
+  HomeTies: number;
+  AwayWins: number;
+  AwayLosses: number;
+  AwayTies: number;
+  Streak: number;
 };
 
 const Home = () => {
@@ -14,9 +43,14 @@ const Home = () => {
     "https://api.sportsdata.io/v3/nfl/scores/json/Standings/" + season + key;
 
   const getTeamData = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        setResponse(json);
+        console.log(response.AwayLosses);
+        console.log(response.Team);
+        console.log(response.Name);
+      });
   };
 
   return (
@@ -31,7 +65,7 @@ const Home = () => {
       />
       <button onClick={() => getTeamData()}>Get Team Info</button>
       <div>
-        <p>Name: {response.name}</p>
+        <p>Name: {response.Name}</p>
       </div>
       <p className="read-the-docs">
         Please enter four digit Year value followed by "REG" for regular season,
