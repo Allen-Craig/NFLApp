@@ -47,31 +47,30 @@ const Home = () => {
       .then((response) => response.json())
       .then((json) => {
         setResponse(json);
-        console.log(response.AwayLosses);
-        console.log(response.Team);
-        console.log(response.Name);
+
+        console.log(response);
       });
   };
 
   return (
     <>
       <h1>Welcome to NFL App</h1>
-      <label htmlFor="Season-input">Input Team Number</label>
+      <label htmlFor="Season-input">Input Season</label>
       <input
         id="Season-input"
         value={season}
         type="text"
         onChange={(event) => setSeason(event.target.value)}
+        placeholder="(YYYYREG/PRE/POST)"
       />
       <button onClick={() => getTeamData()}>Get Team Info</button>
       <div>
         <p>Name: {response.Name}</p>
       </div>
-      <p className="read-the-docs">
+      <p className="info-text">
         Please enter four digit Year value followed by "REG" for regular season,
         "PRE" for preseason, and "POST" for post season.
       </p>
-      <p className="read-the-docs">Example 2024REG</p>
     </>
   );
 };
