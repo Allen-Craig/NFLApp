@@ -18,7 +18,7 @@ type TeamData = {
 
 const Home = () => {
   const [season, setSeason] = useState("2024REG");
-  const [team, setTeam] = useState("");
+  const [team, setTeam] = useState<string>("");
   const [response, setResponse] = useState<TeamData>({} as TeamData);
   const [isLoading, setIsLoading] = useState(false);
   const key = "?key=1a241c5c61df493a988bd27f9d1048ec";
@@ -29,7 +29,7 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
-  const getTeamData = async () => {
+  const getTeamData = async (teamName: string) => {
     setIsLoading(true);
     try {
       const response = await fetch(url);
@@ -38,12 +38,11 @@ const Home = () => {
       }
       const json = await response.json();
 
-      // Find the team data by name
       console.log("Full JSON response:", json);
+
       const teamData = Object.values(json).find(
-        (team: any) => team.Name.toLowerCase() === team.Name.toLowerCase()
+        (team: any) => team.Name.toLowerCase() === teamName.toLowerCase()
       );
-      console.log("Team Data check1", teamData);
       if (teamData) {
         setResponse(teamData as TeamData);
         console.log("Team Data check2", teamData);
@@ -68,16 +67,23 @@ const Home = () => {
         onChange={(event) => setSeason(event.target.value)}
         placeholder="(YYYYREG/PRE/POST)"
       />
-      <input
+      <select
         id="Team-input"
         value={team}
-        type="text"
         onChange={(event) => setTeam(event.target.value)}
-        placeholder="(Miami Dolphins)"
-      />
-      <button onClick={() => getTeamData()}>Get Team Info</button>
+      >
+        <option value="">Select a team</option>
+        <option value="Buffalo Bills">Buffalo Bills</option>
+        <option value="Miami Dolphins">Miami Dolphins</option>
+        <option value="New York Jets">New York Jets</option>
+        <option value="New England Patriots">New England Patriots</option>
+        <option value="Pittsburgh Steelers">Pittsburgh Steelers</option>
+        <option value="Baltimore Ravens">Baltimore Ravens</option>
+        <option value="Cincinnati Bengals">Cincinnati Bengals</option>
+        <option value="Cleveland Browns">Cleveland Browns</option>
+      </select>
 
-      {console.log("Team Data check3", response.Name)}
+      <button onClick={() => getTeamData(team)}>Get Team Info</button>
 
       {response && Object.keys(response).length > 0 ? (
         <div className="team-info">
@@ -92,8 +98,7 @@ const Home = () => {
       )}
 
       <p className="info-text">
-        Please enter four digit Year value followed by "REG" for regular season,
-        "PRE" for preseason, and "POST" for post season.
+        Select your team and season to view statistics.
       </p>
     </>
   );
