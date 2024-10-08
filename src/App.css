@@ -4,6 +4,14 @@
   padding: 2rem;
   text-align: center;
 }
+body {
+  background-image: url("./assets/football.jpg");
+  background-size: 115%;
+}
+
+.team-info {
+  color: #eae6e6;
+}
 
 .logo {
   height: 6em;
