@@ -58,7 +58,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Welcome to NFL App</h1>
+      <h1>NFL Teams App</h1>
       <label htmlFor="Season-input">Input Season</label>
       <input
         id="Season-input"
@@ -81,6 +81,8 @@ const Home = () => {
         <option value="Baltimore Ravens">Baltimore Ravens</option>
         <option value="Cincinnati Bengals">Cincinnati Bengals</option>
         <option value="Cleveland Browns">Cleveland Browns</option>
+        <option value="Arizona Cardinals">Arizona Cardinals</option>
+        <option value="Los Angeles Chargers">Los Angeles Chargers</option>
       </select>
 
       <button onClick={() => getTeamData(team)}>Get Team Info</button>
