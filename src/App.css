@@ -8,9 +8,21 @@ body {
   background-image: url("./assets/football.jpg");
   background-size: 115%;
 }
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+.content-wrapper {
+  padding-top: 50px; /* Adjust this value based on your header height */
+}
 
 .team-info {
-  color: #eae6e6;
+  color: #f8ebe5;
 }
 
 .logo {
