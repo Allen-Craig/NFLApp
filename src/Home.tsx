@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TeamData } from "./interfaces";
+import { TeamData } from "./data-types";
 
 const Home = () => {
   const [season, setSeason] = useState("2024REG");

@@ -1,4 +1,4 @@
-export interface TeamData {
+export type TeamData = {
   SeasonType: number;
   Season: number;
   Conference: string;
@@ -12,4 +12,4 @@ export interface TeamData {
   Touchdowns: number;
   DivisionWins: number;
   TeamID: number;
-}
+};
