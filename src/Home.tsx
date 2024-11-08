@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { TeamData } from "./data-types";
+import { Combobox } from "./components/ui/Combobox";
 
-const Home = () => {
+// interface ComboboxProps {
+//   children?: React.ReactNode;
+//   value?: string;
+//   onChange?: (value: string) => void;
+//   placeholder?: string;
+//   id?: string;
+// }
+
+export const Home = () => {
   const [season, setSeason] = useState("2024REG");
   const [team, setTeam] = useState<string>("");
   const [response, setResponse] = useState<TeamData>({} as TeamData);
@@ -69,18 +78,16 @@ const Home = () => {
         onChange={(event) => setSeason(event.target.value)}
         placeholder="(YYYYREG/PRE/POST)"
       />
-      <select
-        id="Team-input"
-        value={team}
-        onChange={(event) => setTeam(event.target.value)}
-      >
-        <option value="">Select a team</option>
-        {teams.map((team) => (
-          <option key={team.Name} value={team.Name}>
-            {team.Name}
-          </option>
-        ))}
-      </select>
+      <Combobox value={team} onChange={(event) => setTeam(event.value)}>
+        <Combobox placeholder="Select a team" children={undefined} />
+        <Combobox>
+          {teams.map((team) => (
+            <Combobox key={team.Name} value={team.Name}>
+              {team.Name}
+            </Combobox>
+          ))}
+        </Combobox>
+      </Combobox>
 
       <button onClick={() => getTeamData(team)}>Get Team Info</button>
 
